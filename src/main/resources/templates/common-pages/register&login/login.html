@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8; /* Цвет фона, как на предыдущих страницах */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 320px; /* Ширина контейнера */
+        }
+        h2 {
+            text-align: center;
+            color: #007bff; /* Цвет заголовка, как на предыдущих страницах */
+        }
+        label {
+            margin-top: 10px;
+            display: block; /* Сделал метки блочными элементами */
+            color: #333; /* Цвет меток */
+        }
+        input[type="email"], input[type="password"] {
+            width: calc(100% - 20px); /* Учитываем отступы */
+            padding: 10px;
+            margin: 5px 0; /* Уменьшил отступы между полями */
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Учитываем отступы и границы в ширине */
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF; /* Синий цвет кнопки */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3; /* Цвет кнопки при наведении */
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .nav-buttons button {
+            background-color: transparent;
+            color: #007BFF; /* Цвет кнопок навигации */
+            border: none;
+            text-decoration: underline;
+        }
+        .nav-buttons button:hover {
+            color: #0056b3; /* Цвет кнопок навигации при наведении */
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="nav-buttons">
+        <button onclick="window.location.href='/'">Назад</button>
+        <button onclick="window.location.href='/register'">Зарегистрироваться</button>
+    </div>
+    <h2>Авторизация</h2>
+    <form action="/login" method="post">
+        <label for="email">Почта:</label>
+        <input type="email" id="email" name="email" required placeholder="example@mail.com">
+
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password" required placeholder="Введите пароль">
+
+        <input type="submit" value="Войти">
+    </form>
+</div>
+</body>
+</html>

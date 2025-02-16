@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${project.name} + ' - Краудфандинговая платформа'"></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f0f4f8;
+            font-family: Arial, sans-serif;
+        }
+        .project-header {
+            margin-bottom: 30px;
+            text-align: left; /* Выравнивание заголовка влево */
+        }
+        .project-description {
+            margin-bottom: 20px;
+            background-color: #ffffff; /* Фон для описания */
+            padding: 15px; /* Отступы для описания */
+            border-radius: 5px; /* Закругление углов */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень для блока описания */
+        }
+        .project-images {
+            display: flex; /* Используем flexbox для выравнивания изображений */
+            flex-wrap: wrap; /* Позволяем перенос изображений на новую строку */
+            justify-content: center; /* Выравнивание изображений по центру */
+            margin-top: 20px; /* Отступ сверху */
+        }
+        .project-images img {
+            margin: 5px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            max-width: 300px; /* Увеличенная максимальная ширина изображения */
+            max-height: 300px; /* Увеличенная максимальная высота изображения */
+        }
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #6c757d;
+        }
+        .author-nickname {
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .gray-nickname {
+            color: #6c757d; /* Серый цвет для никнейма */
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <span class="navbar-brand">Краудфандинговая платформа</span>
+        <div class="collapse navbar-collapse">
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/general-page">Главная страница</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="author-nickname">
+        <span th:if="${project.owner.id != currentUser .id}">
+            <a th:href="@{/profile/{id}(id=${project.owner.id})}" class="gray-nickname" th:text="${project.owner.nickname}"></a>
+        </span>
+        <span th:if="${project.owner.id == currentUser .id}"> (автор: вы)</span>
+    </div>
+
+    <div class="project-header">
+        <h1 th:text="${project.name}"></h1>
+        <p>
+            Собрано: <strong th:text="${project.collected_amount} != null ? ${project.collected_amount} : 0"></strong> /
+            Необходимая сумма: <strong th:text="${project.required_amount}"></strong>
+            <a href="#" class="btn btn-primary btn-sm ms-3" th:href="@{/donation/{id}(id=${project.id})}">Пожертвовать</a>
+        </p>
+    </div>
+
+    <div class="project-description" th:text="${project.description}"></div>
+
+    <div class="project-images">
+        <div th:each="img : ${images}">
+            <img th:src="@{/images/{id}(id=${img.id})}" alt="Изображение проекта"/>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+</body>
+</html>
